@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 - name: Hello Ansible Playbook
-  hosts: all
+  hosts: redhats
   become: true
   tasks:
    - name: Example from an Ansible Playbook

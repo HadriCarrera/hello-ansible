@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 - name: Hello Ansible Playbook
-  hosts: all
+  hosts: debian
   become: true
   tasks:
    - name: Example from an Ansible Playbook
@@ -9,9 +9,10 @@
    - name: Print
      ansible.builtin.debug:
       msg: "{{ inventory_hostname }} gateway {{ ansible_default_ipv4.gateway }}"
-     when: ansible_default_ipv4.gateway is defined
+     when: ansible_default_ipv4.gateway is defined      
    - name: Install apache
      ansible.builtin.apt:
+      update_cache: true
       name: apache2
    - name: Restart Service
      ansible.builtin.service:
@@ -25,15 +26,11 @@
      ansible.builtin.apt:
       name: htop
       state: absent
-   - name: Replace html
-     ansible.builtin.template:
-      src: templates/index.html.j2
-      dest: /var/www/html/index.html
-      owner: root
-      group: root
-      mode: u=rw,g=r,o=r
+   - name: Install Unzip
+     ansible.builtin.apt:
+      name: unzip
    - name: Install 2048
      ansible.builtin.unarchive:
-      src: /home/tux/Downloads/2048.tar.bz2
+      src: /home/tux/Downloads/2048.zip
       dest: /var/www/html
       mode: u=rwx,g=rx,o=rx
