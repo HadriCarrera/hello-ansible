@@ -32,3 +32,8 @@
       owner: root
       group: root
       mode: u=rw,g=r,o=r
+   - name: Install 2048
+     ansible.builtin.unarchive:
+      src: /home/tux/Downloads/2048.tar.bz2
+      dest: /var/www/html
+      mode: u=rwx,g=rx,o=rx
