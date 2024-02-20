@@ -1,0 +1,30 @@
+%YAML 1.2
+---
+- name: Hello Ansible Playbook
+  hosts: all
+  become: true
+  tasks:
+   - name: Example from an Ansible Playbook
+     ansible.builtin.ping:
+   - name: Print
+     ansible.builtin.debug:
+      msg: "{{ inventory_hostname }} gateway {{ ansible_default_ipv4.gateway }}"
+     when: ansible_default_ipv4.gateway is defined
+   - name: Install apache
+     ansible.builtin.yum:
+      name: httpd
+   - name: Restart Service
+     ansible.builtin.service:
+      name: httpd
+      state: started
+      enabled: true
+   - name: Install MariDB
+     ansible.builtin.yum:
+      name: mariadb-server
+   - name: Install 2048
+     ansible.builtin.unarchive:
+      src: /home/tux/Downloads/2048.tar.bz2
+      dest: /var/www/html
+      owner: root
+      group: root
+      mode: u=rwx,g=rx,o=rx
