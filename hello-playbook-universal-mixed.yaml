@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+- name: Hello Ansible Playbook Mixed
+  hosts: all
+  become: true
+  tasks:
+    - include_task: hello-tasks-debian.yaml
+      when: ansible_facts['os_family'] == "Debian"
+    - include_task: hello-tasks-debian.yaml
+      when: ansible_facts['os_family'] == "Debian"
+
+

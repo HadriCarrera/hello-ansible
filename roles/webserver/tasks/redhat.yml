@@ -1,0 +1,10 @@
+# roles/example/tasks/redhat.yml
+- name: Install web server
+  ansible.builtin.yum:
+    name: "httpd"
+    state: present
+- name: Restart Service
+  ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: true
