@@ -3,6 +3,7 @@
   ansible.builtin.apt:
     name: "apache2"
     state: present
+    update_cache: true
 - name: Restart Service
   ansible.builtin.service:
     name: apache2

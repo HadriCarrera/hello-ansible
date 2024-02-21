@@ -1,5 +1,5 @@
 # roles/example/tasks/debian.yml
-- name: Install web server
+- name: Install db server
   ansible.builtin.apt:
     name: "mariadb-server"
     state: present
