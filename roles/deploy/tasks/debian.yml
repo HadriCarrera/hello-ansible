@@ -1,0 +1,8 @@
+- name: Install Unzip
+  ansible.builtin.apt:
+    name: unzip
+- name: Install 2048
+  ansible.builtin.unarchive:
+    src: /home/tux/Downloads/2048.zip
+    dest: /var/www/html
+    mode: u=rwx,g=rx,o=rx 
