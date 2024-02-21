@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+    - name: Show facts
+      ansible.builtin.debug:
+        var: ansible_facts['default_ipv4']['address']
+    - name: Reg a variable
+      ansible.builtin.shell: cat /etc/motd
+      register: motd_contents
+    - name: Dump motd
+      ansible.builtin.debug:
+        var: motd_contents

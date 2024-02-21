@@ -1,0 +1,67 @@
+%YAML 1.2
+---
+- name: Hello Ansible Playbook Universal
+  hosts: all
+  become: true
+  tasks:
+   - name: Example from an Ansible Playbook
+     ansible.builtin.ping:
+   - name: Print
+     ansible.builtin.debug:
+      msg: "{{ inventory_hostname }} gateway {{ ansible_default_ipv4.gateway }}"
+     when: ansible_default_ipv4.gateway is defined
+   - name: Install apache Debian
+     ansible.builtin.apt:
+      update_cache: true
+      name: apache2
+     when: ansible_facts['os_family'] == "Debian"
+   - name: Install apache Fedora
+     ansible.builtin.yum:
+      update_cache: true
+      name: httpd
+     when: ansible_facts['os_family'] == "RedHat"
+   - name: Restart Service Debian
+     ansible.builtin.service:
+      name: apache2
+      state: started
+      enabled: true
+     when: ansible_facts['os_family'] == "Debian"
+   - name: Restart Service Fedora
+     ansible.builtin.service:
+      name: httpd
+      state: started
+      enabled: true
+     when: ansible_facts['os_family'] == "RedHat"
+   - name: Install MariDB Debian
+     ansible.builtin.apt:
+      name: mariadb-server
+     when: ansible_facts['os_family'] == "Debian"
+   - name: Install MariDB Fedora
+     ansible.builtin.yum:
+      name: mariadb-server
+     when: ansible_facts['os_family'] == "RedHat"
+   - name: Unistall htop
+     ansible.builtin.apt:
+      name: htop
+      state: absent
+     when: ansible_facts['os_family'] == "Debian"
+   - name: Unistall htop
+     ansible.builtin.yum:
+      name: htop
+      state: absent
+     when: ansible_facts['os_family'] == "RedHat"
+   - name: Install Unzip Debian
+     ansible.builtin.apt:
+      name: unzip
+     when: ansible_facts['os_family'] == "Debian"
+   - name: Install Unzip Fedora
+     ansible.builtin.yum:
+      name: unzip
+     when: ansible_facts['os_family'] == "RedHat"
+   - name: Install 2048
+     ansible.builtin.unarchive:
+      src: /home/tux/Downloads/2048.tar.bz2
+      dest: /var/www/html
+      owner: root
+      group: root
+      mode: u=rwx,g=rx,o=rx
