@@ -1,0 +1,6 @@
+---
+- name: boostrap test
+  hosts: all
+  become: true
+  roles:
+    - bootstrap

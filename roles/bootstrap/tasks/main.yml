@@ -1,2 +1,8 @@
 ---
 # tasks file for bootstrap
+- name: Bootstrap
+  sysload:
+  register: load
+- name: Debug
+  debug:
+    msg: "{{ load }}"

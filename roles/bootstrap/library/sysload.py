@@ -1,8 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from ansible.module_utils.basic import AnsibleModule
 import os
-
-
 
 
 def main():
@@ -18,5 +16,7 @@ def main():
     result['load_5'] = load_5
     result['load_15'] = load_15
     module.exit_json(**result)
+
+
 if __name__ == '__main__':
     main()
