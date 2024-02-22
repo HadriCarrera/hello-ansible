@@ -9,3 +9,4 @@
    - role: deploy
      vars:
        artifact: /home/tux/Downloads/2048.zip
+   - bootstrap
