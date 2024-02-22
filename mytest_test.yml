@@ -1,0 +1,4 @@
+---
+- hosts: all
+  import_tasks:
+    - my_test
